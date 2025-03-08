@@ -7,19 +7,26 @@ import jwt from 'jsonwebtoken';
 const readFilePromise = promisify(fs.readFile);
 const existsPromise = promisify(fs.exists);
 
-const JWT_SECRET = 'your-secret-key-for-trading-bot-authentication';
+const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET || 'your-secret-key-for-trading-bot-authentication';
+
+// Define type for decoded JWT token
+interface DecodedToken {
+  username: string;
+  iat: number;
+  exp: number;
+}
 
 // Helper function to verify JWT token
-const verifyToken = (token: string) => {
+const verifyToken = (token: string): DecodedToken | null => {
   try {
-    return jwt.verify(token, JWT_SECRET);
-  } catch (error) {
+    return jwt.verify(token, JWT_SECRET) as DecodedToken;
+  } catch (_) {
     return null;
   }
 };
 
 // Helper function to check authentication
-const checkAuth = (request: NextRequest) => {
+const checkAuth = (request: NextRequest): boolean => {
   // For browser requests, check Authorization header
   const authHeader = request.headers.get('Authorization');
   if (authHeader && authHeader.startsWith('Bearer ')) {
@@ -34,9 +41,20 @@ const checkAuth = (request: NextRequest) => {
   return false;
 };
 
+// Define transaction type
+interface Transaction {
+  id: string;
+  type: 'buy' | 'sell';
+  amount: number;
+  price: number;
+  total: number;
+  timestamp: string;
+  status: 'completed' | 'pending' | 'failed';
+}
+
 // Create a mock data store for transaction history
 // In a real implementation, this would come from a database or log files
-const transactionStore: Record<string, any[]> = {
+const transactionStore: Record<string, Transaction[]> = {
   azbit: [],
   p2pb2b: []
 };
@@ -67,8 +85,8 @@ async function getOrderBookData(botId: string) {
       spread: botId === 'azbit' ? 0.02 : 0.0002,
       lastOrderType: Math.random() > 0.5 ? 'buy' : 'sell'
     };
-  } catch (error) {
-    console.error(`Error getting order book data for ${botId}:`, error);
+  } catch (_) {
+    console.error(`Error getting order book data for ${botId}:`);
     // Return default data on error
     return {
       lowestSell: botId === 'azbit' ? 0.29 : 0.0025,
@@ -99,8 +117,8 @@ async function getBalanceData(botId: string) {
       crypto: botId === 'azbit' ? 1.5 : 5000,
       usdt: 5000 + Math.random() * 10000
     };
-  } catch (error) {
-    console.error(`Error getting balance data for ${botId}:`, error);
+  } catch (_) {
+    console.error(`Error getting balance data for ${botId}:`);
     // Return default data on error
     return {
       crypto: botId === 'azbit' ? 1.5 : 5000,
@@ -127,7 +145,6 @@ async function getTransactionHistory(botId: string) {
     // If no transactions exist yet, return empty array
     if (!transactionStore[botId] || transactionStore[botId].length === 0) {
       // Generate some initial mock transactions
-      const cryptoCurrency = botId === 'azbit' ? 'BTCR' : 'BRIL';
       transactionStore[botId] = Array.from({ length: 5 }, (_, i) => {
         const type = i % 2 === 0 ? 'buy' : 'sell';
         const price = botId === 'azbit' ? 0.28 + (Math.random() * 0.02) : 0.0024 + (Math.random() * 0.0002);
@@ -145,8 +162,8 @@ async function getTransactionHistory(botId: string) {
     }
     
     return transactionStore[botId];
-  } catch (error) {
-    console.error(`Error getting transaction history for ${botId}:`, error);
+  } catch (_) {
+    console.error(`Error getting transaction history for ${botId}:`);
     return [];
   }
 }
@@ -176,8 +193,8 @@ async function getPriceHistory(botId: string) {
       highestBuy: basePrice - (Math.random() * 0.02),
       spread: baseSpread + (Math.random() * (baseSpread * 0.1))
     })).reverse();
-  } catch (error) {
-    console.error(`Error getting price history for ${botId}:`, error);
+  } catch (_) {
+    console.error(`Error getting price history for ${botId}:`);
     return [];
   }
 }
@@ -214,11 +231,11 @@ export async function GET(request: NextRequest) {
         tradingPair: botId === 'azbit' ? 'BTCR/USDT' : 'BRIL/USDT'
       }
     });
-  } catch (error: any) {
-    console.error('Error getting bot data:', error);
+  } catch (error) {
+    console.error('Error getting bot data:',error);
     return NextResponse.json({ 
       success: false, 
-      error: error.message || 'An error occurred' 
+      error: 'An error occurred' 
     }, { status: 500 });
   }
 }

@@ -1,14 +1,12 @@
 "use client";
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 const BotManager = dynamic(() => import('../components/BotManager'), {
   ssr: false
 });
 
 export default function Home() {
-  const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [username, setUsername] = useState('');

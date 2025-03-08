@@ -1,22 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { spawn } from 'child_process';
+import { spawn, ChildProcess } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = 'your-secret-key-for-trading-bot-authentication';
+// Use environment variable for JWT secret
+const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET || 'your-secret-key-for-trading-bot-authentication';
+
+// Define type for decoded JWT token
+interface DecodedToken {
+  username: string;
+  iat: number;
+  exp: number;
+}
 
 // Helper function to verify JWT token
-const verifyToken = (token: string) => {
+const verifyToken = (token: string): DecodedToken | null => {
   try {
-    return jwt.verify(token, JWT_SECRET);
+    return jwt.verify(token, JWT_SECRET) as DecodedToken;
   } catch (error) {
     return null;
   }
 };
 
 // Helper function to check authentication
-const checkAuth = (request: NextRequest) => {
+const checkAuth = (request: NextRequest): boolean => {
   // For browser requests, check Authorization header
   const authHeader = request.headers.get('Authorization');
   if (authHeader && authHeader.startsWith('Bearer ')) {
@@ -31,11 +39,23 @@ const checkAuth = (request: NextRequest) => {
   return false;
 };
 
+// Define type for bot process
+interface BotProcess {
+  process: ChildProcess | null;
+  running: boolean;
+}
+
 // Store bot process IDs
-let botProcesses: Record<string, { process: any; running: boolean }> = {
+const botProcesses: Record<string, BotProcess> = {
   azbit: { process: null, running: false },
   p2pb2b: { process: null, running: false }
 };
+
+// Define type for request body
+interface BotActionRequest {
+  action: 'start' | 'stop';
+  botId: 'azbit' | 'p2pb2b';
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -44,7 +64,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 });
     }
     
-    const { action, botId } = await request.json();
+    const requestBody = await request.json() as Partial<BotActionRequest>;
+    const { action, botId } = requestBody;
 
     if (!botId || !['azbit', 'p2pb2b'].includes(botId)) {
       return NextResponse.json({ success: false, error: 'Invalid bot ID' }, { status: 400 });
@@ -77,7 +98,7 @@ export async function POST(request: NextRequest) {
 
       try {
         // Start the bot process detached so it continues running after the API request completes
-        const process = spawn('node', [scriptPath], {
+        const childProcess = spawn('node', [scriptPath], {
           cwd: rootDir,
           detached: true,
           stdio: 'ignore',
@@ -85,11 +106,11 @@ export async function POST(request: NextRequest) {
         });
 
         // Unref the process to allow the Node.js event loop to exit even if the process is still running
-        process.unref();
+        childProcess.unref();
 
         // Store the process reference
         botProcesses[botId] = {
-          process: process,
+          process: childProcess,
           running: true
         };
 
@@ -99,13 +120,14 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ 
           success: true, 
           message: `${botId} bot started successfully`,
-          pid: process.pid
+          pid: childProcess.pid
         });
       } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
         console.error(`Error starting ${botId} bot:`, error);
         return NextResponse.json({ 
           success: false, 
-          error: `Failed to start ${botId} bot: ${error instanceof Error ? error.message : 'Unknown error'}`
+          error: `Failed to start ${botId} bot: ${errorMessage}`
         }, { status: 500 });
       }
     } else if (action === 'stop') {
@@ -119,7 +141,7 @@ export async function POST(request: NextRequest) {
 
       try {
         // If we have a process reference, try to kill it
-        if (botProcesses[botId].process) {
+        if (botProcesses[botId].process && botProcesses[botId].process.pid) {
           // On Windows, we need to use taskkill to kill the process tree
           if (process.platform === 'win32') {
             spawn('taskkill', ['/pid', botProcesses[botId].process.pid.toString(), '/f', '/t']);
@@ -142,6 +164,7 @@ export async function POST(request: NextRequest) {
           message: `${botId} bot stopped successfully` 
         });
       } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
         console.error(`Error stopping ${botId} bot:`, error);
         
         // Even if there's an error, try to remove the marker file and update status
@@ -156,17 +179,18 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json({ 
           success: false, 
-          error: `Failed to stop ${botId} bot: ${error instanceof Error ? error.message : 'Unknown error'}`
+          error: `Failed to stop ${botId} bot: ${errorMessage}`
         }, { status: 500 });
       }
     }
 
     return NextResponse.json({ success: false, error: 'Invalid request' }, { status: 400 });
-  } catch (error: any) {
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     console.error('Error handling bot action:', error);
     return NextResponse.json({ 
       success: false, 
-      error: error.message || 'An error occurred' 
+      error: errorMessage
     }, { status: 500 });
   }
 }
@@ -199,11 +223,12 @@ export async function GET(request: NextRequest) {
         running: isRunning
       }
     });
-  } catch (error: any) {
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     console.error('Error getting bot status:', error);
     return NextResponse.json({ 
       success: false, 
-      error: error.message || 'An error occurred' 
+      error: errorMessage
     }, { status: 500 });
   }
 }
