@@ -3,10 +3,10 @@
 import React, { useState, useEffect } from 'react';
 
 export default function TestLoginPage() {
-  const [debugInfo, setDebugInfo] = useState<any>(null);
+  const [debugInfo, setDebugInfo] = useState<{ [key: string]: string } | null>(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<{ [key: string]: string | boolean | number } | null>(null);
 
   useEffect(() => {
     // Fetch environment variables (only public ones will be available)

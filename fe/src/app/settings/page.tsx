@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 interface ApiKeys {
   azbit: {
@@ -195,9 +196,9 @@ export default function SettingsPage() {
         >
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">API Settings</h1>
-            <a href="/" className="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+            <Link href="/" className="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
               Back to Dashboard
-            </a>
+            </Link>
           </div>
           
           {saveSuccess === true && (
