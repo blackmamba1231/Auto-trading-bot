@@ -19,6 +19,7 @@ const verifyToken = (token: string): DecodedToken | null => {
   try {
     return jwt.verify(token, JWT_SECRET) as DecodedToken;
   } catch (error) {
+    console.log(error);
     return null;
   }
 };

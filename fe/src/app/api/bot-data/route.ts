@@ -20,7 +20,8 @@ interface DecodedToken {
 const verifyToken = (token: string): DecodedToken | null => {
   try {
     return jwt.verify(token, JWT_SECRET) as DecodedToken;
-  } catch (_) {
+  } catch (error) {
+    console.log(error);
     return null;
   }
 };
@@ -85,8 +86,8 @@ async function getOrderBookData(botId: string) {
       spread: botId === 'azbit' ? 0.02 : 0.0002,
       lastOrderType: Math.random() > 0.5 ? 'buy' : 'sell'
     };
-  } catch (_) {
-    console.error(`Error getting order book data for ${botId}:`);
+  } catch (error) {
+    console.error(`Error getting order book data for ${botId}:`,error);
     // Return default data on error
     return {
       lowestSell: botId === 'azbit' ? 0.29 : 0.0025,
@@ -117,8 +118,8 @@ async function getBalanceData(botId: string) {
       crypto: botId === 'azbit' ? 1.5 : 5000,
       usdt: 5000 + Math.random() * 10000
     };
-  } catch (_) {
-    console.error(`Error getting balance data for ${botId}:`);
+  } catch (error) {
+    console.error(`Error getting balance data for ${botId}:`,error);
     // Return default data on error
     return {
       crypto: botId === 'azbit' ? 1.5 : 5000,
@@ -162,8 +163,8 @@ async function getTransactionHistory(botId: string) {
     }
     
     return transactionStore[botId];
-  } catch (_) {
-    console.error(`Error getting transaction history for ${botId}:`);
+  } catch (error) {
+    console.error(`Error getting transaction history for ${botId}:`,error);
     return [];
   }
 }
@@ -193,8 +194,8 @@ async function getPriceHistory(botId: string) {
       highestBuy: basePrice - (Math.random() * 0.02),
       spread: baseSpread + (Math.random() * (baseSpread * 0.1))
     })).reverse();
-  } catch (_) {
-    console.error(`Error getting price history for ${botId}:`);
+  } catch (error) {
+    console.error(`Error getting price history for ${botId}:`,error);
     return [];
   }
 }

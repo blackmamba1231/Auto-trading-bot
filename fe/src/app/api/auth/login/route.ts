@@ -45,10 +45,10 @@ export async function POST(request: NextRequest) {
       message: 'Login successful',
       redirectUrl: '/' // Include the redirect URL in the response
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json(
-      { success: false, error: 'An error occurred during login' },
+      { success: false},
       { status: 500 }
     );
   }
