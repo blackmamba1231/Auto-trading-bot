@@ -12,7 +12,6 @@ export interface BotControlPanelProps {
 
 const BotControlPanel: React.FC<BotControlPanelProps> = ({
   botName,
-  botId,
   isRunning,
   isLoading = false,
   onStart,

@@ -42,7 +42,7 @@ const Dashboard: React.FC = () => {
     lastOrderType: null
   });
   const [tradeHistory, setTradeHistory] = React.useState<TradeData[]>([]);
-  const [balance, setBalance] = React.useState({
+  const [balance] = React.useState({
     btc: 0,
     usdt: 0,
   });

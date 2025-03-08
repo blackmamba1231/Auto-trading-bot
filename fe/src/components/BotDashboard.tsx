@@ -34,7 +34,6 @@ interface BalanceCardProps {
 }
 
 interface BotDashboardProps {
-  botName: string;
   tradingPair: string;
   isActive: boolean;
   botId: string;
@@ -52,7 +51,7 @@ const BalanceCard: React.FC<BalanceCardProps> = ({ title, amount, currency }) =>
   </motion.div>
 );
 
-const BotDashboard: React.FC<BotDashboardProps> = ({ botName, tradingPair, isActive, botId }) => {
+const BotDashboard: React.FC<BotDashboardProps> = ({ tradingPair, isActive, botId }) => {
   const [orderBook, setOrderBook] = React.useState<OrderBookData>({
     lowestSell: 0,
     highestBuy: 0,

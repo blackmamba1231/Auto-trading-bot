@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import BotControlPanel from './BotControlPanel';
 import BotDashboard from './BotDashboard';
 
@@ -37,23 +37,8 @@ const BotManager: React.FC = () => {
     setAuthToken(token);
   }, []);
 
-  // Fetch bot status on component mount
-  useEffect(() => {
-    if (authToken) {
-      fetchBotStatus('azbit');
-      fetchBotStatus('p2pb2b');
-
-      // Poll for status updates every 10 seconds
-      const interval = setInterval(() => {
-        fetchBotStatus('azbit');
-        fetchBotStatus('p2pb2b');
-      }, 10000);
-
-      return () => clearInterval(interval);
-    }
-  }, [authToken]);
-
-  const fetchBotStatus = async (botId: string) => {
+  // Define fetchBotStatus with useCallback to prevent infinite re-renders
+  const fetchBotStatus = useCallback(async (botId: string) => {
     if (!authToken) return;
     
     try {
@@ -70,25 +55,40 @@ const BotManager: React.FC = () => {
         return;
       }
       
-      if (!response.ok) {
-        throw new Error(`Failed to fetch ${botId} status: ${response.statusText}`);
-      }
-      
       const data = await response.json();
       
-      if (data.success) {
-        if (botId === 'azbit') {
-          setAzbitStatus(data.data);
-        } else {
-          setP2pb2bStatus(data.data);
-        }
-      } else {
-        console.error(`Error fetching ${botId} status:`, data.error);
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || `Failed to fetch ${botId} status`);
       }
+      
+      if (botId === 'azbit') {
+        setAzbitStatus({ running: data.data.running });
+      } else {
+        setP2pb2bStatus({ running: data.data.running });
+      }
+      
+      console.log(`${botId} status:`, data.data.running ? 'Running' : 'Stopped');
     } catch (error) {
       console.error(`Error fetching ${botId} status:`, error);
+      // Don't set error state here to avoid UI disruption during polling
     }
-  };
+  }, [authToken]);
+
+  // Fetch bot status on component mount
+  useEffect(() => {
+    if (authToken) {
+      fetchBotStatus('azbit');
+      fetchBotStatus('p2pb2b');
+
+      // Poll for status updates every 10 seconds
+      const interval = setInterval(() => {
+        fetchBotStatus('azbit');
+        fetchBotStatus('p2pb2b');
+      }, 10000);
+
+      return () => clearInterval(interval);
+    }
+  }, [authToken, fetchBotStatus]);
 
   const handleStartBot = async (botId: string) => {
     if (!authToken) return;
@@ -252,7 +252,6 @@ const BotManager: React.FC = () => {
               <h2 className="text-xl font-bold text-gray-800 dark:text-white">Azbit Bot Dashboard</h2>
             </div>
             <BotDashboard
-              botName="Azbit Trading Bot"
               tradingPair="BTC/USDT"
               isActive={azbitStatus.running}
               botId="azbit"
@@ -266,7 +265,6 @@ const BotManager: React.FC = () => {
               <h2 className="text-xl font-bold text-gray-800 dark:text-white">P2PB2B Bot Dashboard</h2>
             </div>
             <BotDashboard
-              botName="P2PB2B Trading Bot"
               tradingPair="BTCR/USDT"
               isActive={p2pb2bStatus.running}
               botId="p2pb2b"
