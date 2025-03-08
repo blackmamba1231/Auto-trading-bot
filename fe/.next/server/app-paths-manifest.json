@@ -1,8 +1,10 @@
 {
-  "/api/bot-data/route": "app/api/bot-data/route.js",
-  "/api/bot/route": "app/api/bot/route.js",
   "/page": "app/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/bot/route": "app/api/bot/route.js",
+  "/api/bot-data/route": "app/api/bot-data/route.js",
+  "/settings/page": "app/settings/page.js",
+  "/api/settings/route": "app/api/settings/route.js",
   "/login/page": "app/login/page.js",
   "/api/auth/login/route": "app/api/auth/login/route.js"
 }

@@ -208,6 +208,13 @@ const BotManager: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 space-y-8">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Trading Bot Dashboard</h1>
+        <a href="/settings" className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors">
+          API Settings
+        </a>
+      </div>
+      
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
           <strong className="font-bold">Error: </strong>

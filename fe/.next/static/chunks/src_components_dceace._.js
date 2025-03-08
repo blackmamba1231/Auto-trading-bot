@@ -12,7 +12,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
 ;
 ;
-const BotControlPanel = ({ botName, botId, isRunning, isLoading = false, onStart, onStop })=>{
+const BotControlPanel = ({ botName, isRunning, isLoading = false, onStart, onStop })=>{
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
         initial: {
             opacity: 0,
@@ -35,7 +35,7 @@ const BotControlPanel = ({ botName, botId, isRunning, isLoading = false, onStart
                         children: botName
                     }, void 0, false, {
                         fileName: "[project]/src/components/BotControlPanel.tsx",
-                        lineNumber: 29,
+                        lineNumber: 28,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -45,7 +45,7 @@ const BotControlPanel = ({ botName, botId, isRunning, isLoading = false, onStart
                                 className: `inline-block w-3 h-3 rounded-full mr-2 ${isRunning ? 'bg-green-500' : 'bg-red-500'}`
                             }, void 0, false, {
                                 fileName: "[project]/src/components/BotControlPanel.tsx",
-                                lineNumber: 31,
+                                lineNumber: 30,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -53,19 +53,19 @@ const BotControlPanel = ({ botName, botId, isRunning, isLoading = false, onStart
                                 children: isRunning ? 'Running' : 'Stopped'
                             }, void 0, false, {
                                 fileName: "[project]/src/components/BotControlPanel.tsx",
-                                lineNumber: 32,
+                                lineNumber: 31,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/BotControlPanel.tsx",
-                        lineNumber: 30,
+                        lineNumber: 29,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/BotControlPanel.tsx",
-                lineNumber: 28,
+                lineNumber: 27,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -93,7 +93,7 @@ const BotControlPanel = ({ botName, botId, isRunning, isLoading = false, onStart
                                             strokeWidth: "4"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/BotControlPanel.tsx",
-                                            lineNumber: 51,
+                                            lineNumber: 50,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -102,25 +102,25 @@ const BotControlPanel = ({ botName, botId, isRunning, isLoading = false, onStart
                                             d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/BotControlPanel.tsx",
-                                            lineNumber: 52,
+                                            lineNumber: 51,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/BotControlPanel.tsx",
-                                    lineNumber: 50,
+                                    lineNumber: 49,
                                     columnNumber: 15
                                 }, this),
                                 "Starting..."
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/BotControlPanel.tsx",
-                            lineNumber: 49,
+                            lineNumber: 48,
                             columnNumber: 13
                         }, this) : 'Start Bot'
                     }, void 0, false, {
                         fileName: "[project]/src/components/BotControlPanel.tsx",
-                        lineNumber: 39,
+                        lineNumber: 38,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -145,7 +145,7 @@ const BotControlPanel = ({ botName, botId, isRunning, isLoading = false, onStart
                                             strokeWidth: "4"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/BotControlPanel.tsx",
-                                            lineNumber: 73,
+                                            lineNumber: 72,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -154,37 +154,37 @@ const BotControlPanel = ({ botName, botId, isRunning, isLoading = false, onStart
                                             d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/BotControlPanel.tsx",
-                                            lineNumber: 74,
+                                            lineNumber: 73,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/BotControlPanel.tsx",
-                                    lineNumber: 72,
+                                    lineNumber: 71,
                                     columnNumber: 15
                                 }, this),
                                 "Stopping..."
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/BotControlPanel.tsx",
-                            lineNumber: 71,
+                            lineNumber: 70,
                             columnNumber: 13
                         }, this) : 'Stop Bot'
                     }, void 0, false, {
                         fileName: "[project]/src/components/BotControlPanel.tsx",
-                        lineNumber: 61,
+                        lineNumber: 60,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/BotControlPanel.tsx",
-                lineNumber: 38,
+                lineNumber: 37,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/BotControlPanel.tsx",
-        lineNumber: 22,
+        lineNumber: 21,
         columnNumber: 5
     }, this);
 };
@@ -491,7 +491,7 @@ const BalanceCard = ({ title, amount, currency })=>/*#__PURE__*/ (0, __TURBOPACK
                 children: title
             }, void 0, false, {
                 fileName: "[project]/src/components/BotDashboard.tsx",
-                lineNumber: 48,
+                lineNumber: 47,
                 columnNumber: 5
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -503,17 +503,17 @@ const BalanceCard = ({ title, amount, currency })=>/*#__PURE__*/ (0, __TURBOPACK
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/BotDashboard.tsx",
-                lineNumber: 49,
+                lineNumber: 48,
                 columnNumber: 5
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/BotDashboard.tsx",
-        lineNumber: 44,
+        lineNumber: 43,
         columnNumber: 3
     }, this);
 _c = BalanceCard;
-const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
+const BotDashboard = ({ tradingPair, isActive, botId })=>{
     _s();
     const [orderBook, setOrderBook] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].useState({
         lowestSell: 0,
@@ -610,12 +610,12 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                 children: "This bot is currently inactive. Start the bot to view its dashboard."
             }, void 0, false, {
                 fileName: "[project]/src/components/BotDashboard.tsx",
-                lineNumber: 145,
+                lineNumber: 144,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/BotDashboard.tsx",
-            lineNumber: 144,
+            lineNumber: 143,
             columnNumber: 7
         }, this);
     }
@@ -626,12 +626,12 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                 className: "animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"
             }, void 0, false, {
                 fileName: "[project]/src/components/BotDashboard.tsx",
-                lineNumber: 155,
+                lineNumber: 154,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/BotDashboard.tsx",
-            lineNumber: 154,
+            lineNumber: 153,
             columnNumber: 7
         }, this);
     }
@@ -647,7 +647,7 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                         children: "Error: "
                     }, void 0, false, {
                         fileName: "[project]/src/components/BotDashboard.tsx",
-                        lineNumber: 164,
+                        lineNumber: 163,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -655,18 +655,18 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                         children: error
                     }, void 0, false, {
                         fileName: "[project]/src/components/BotDashboard.tsx",
-                        lineNumber: 165,
+                        lineNumber: 164,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/BotDashboard.tsx",
-                lineNumber: 163,
+                lineNumber: 162,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/BotDashboard.tsx",
-            lineNumber: 162,
+            lineNumber: 161,
             columnNumber: 7
         }, this);
     }
@@ -694,7 +694,7 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                         children: tradingPairInfo
                     }, void 0, false, {
                         fileName: "[project]/src/components/BotDashboard.tsx",
-                        lineNumber: 183,
+                        lineNumber: 182,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -708,7 +708,7 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                                         children: "Lowest Sell"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/BotDashboard.tsx",
-                                        lineNumber: 186,
+                                        lineNumber: 185,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -719,13 +719,13 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/BotDashboard.tsx",
-                                        lineNumber: 187,
+                                        lineNumber: 186,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/BotDashboard.tsx",
-                                lineNumber: 185,
+                                lineNumber: 184,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -736,7 +736,7 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                                         children: "Highest Buy"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/BotDashboard.tsx",
-                                        lineNumber: 190,
+                                        lineNumber: 189,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -747,13 +747,13 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/BotDashboard.tsx",
-                                        lineNumber: 191,
+                                        lineNumber: 190,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/BotDashboard.tsx",
-                                lineNumber: 189,
+                                lineNumber: 188,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -764,7 +764,7 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                                         children: "Spread"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/BotDashboard.tsx",
-                                        lineNumber: 194,
+                                        lineNumber: 193,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -775,19 +775,19 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/BotDashboard.tsx",
-                                        lineNumber: 195,
+                                        lineNumber: 194,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/BotDashboard.tsx",
-                                lineNumber: 193,
+                                lineNumber: 192,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/BotDashboard.tsx",
-                        lineNumber: 184,
+                        lineNumber: 183,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -801,24 +801,24 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                                     children: orderBook.lastOrderType || 'None'
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/BotDashboard.tsx",
-                                    lineNumber: 200,
+                                    lineNumber: 199,
                                     columnNumber: 30
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/BotDashboard.tsx",
-                            lineNumber: 199,
+                            lineNumber: 198,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/BotDashboard.tsx",
-                        lineNumber: 198,
+                        lineNumber: 197,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/BotDashboard.tsx",
-                lineNumber: 182,
+                lineNumber: 181,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -830,7 +830,7 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                         currency: cryptoCurrency
                     }, void 0, false, {
                         fileName: "[project]/src/components/BotDashboard.tsx",
-                        lineNumber: 207,
+                        lineNumber: 206,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(BalanceCard, {
@@ -839,13 +839,13 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                         currency: "USDT"
                     }, void 0, false, {
                         fileName: "[project]/src/components/BotDashboard.tsx",
-                        lineNumber: 208,
+                        lineNumber: 207,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/BotDashboard.tsx",
-                lineNumber: 206,
+                lineNumber: 205,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -856,7 +856,7 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                         children: "Price History"
                     }, void 0, false, {
                         fileName: "[project]/src/components/BotDashboard.tsx",
-                        lineNumber: 213,
+                        lineNumber: 212,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -870,7 +870,7 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                                         stroke: "#374151"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/BotDashboard.tsx",
-                                        lineNumber: 217,
+                                        lineNumber: 216,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$XAxis$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["XAxis"], {
@@ -878,14 +878,14 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                                         stroke: "#9CA3AF"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/BotDashboard.tsx",
-                                        lineNumber: 218,
+                                        lineNumber: 217,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$YAxis$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["YAxis"], {
                                         stroke: "#9CA3AF"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/BotDashboard.tsx",
-                                        lineNumber: 219,
+                                        lineNumber: 218,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$component$2f$Tooltip$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tooltip"], {
@@ -897,12 +897,12 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/BotDashboard.tsx",
-                                        lineNumber: 220,
+                                        lineNumber: 219,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$component$2f$Legend$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Legend"], {}, void 0, false, {
                                         fileName: "[project]/src/components/BotDashboard.tsx",
-                                        lineNumber: 228,
+                                        lineNumber: 227,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$Line$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Line"], {
@@ -916,7 +916,7 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/BotDashboard.tsx",
-                                        lineNumber: 229,
+                                        lineNumber: 228,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$Line$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Line"], {
@@ -930,7 +930,7 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/BotDashboard.tsx",
-                                        lineNumber: 237,
+                                        lineNumber: 236,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$Line$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Line"], {
@@ -944,42 +944,42 @@ const BotDashboard = ({ botName, tradingPair, isActive, botId })=>{
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/BotDashboard.tsx",
-                                        lineNumber: 245,
+                                        lineNumber: 244,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/BotDashboard.tsx",
-                                lineNumber: 216,
+                                lineNumber: 215,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/BotDashboard.tsx",
-                            lineNumber: 215,
+                            lineNumber: 214,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/BotDashboard.tsx",
-                        lineNumber: 214,
+                        lineNumber: 213,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/BotDashboard.tsx",
-                lineNumber: 212,
+                lineNumber: 211,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$TransactionHistory$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                 transactions: transactions
             }, void 0, false, {
                 fileName: "[project]/src/components/BotDashboard.tsx",
-                lineNumber: 259,
+                lineNumber: 258,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/BotDashboard.tsx",
-        lineNumber: 175,
+        lineNumber: 174,
         columnNumber: 5
     }, this);
 };
@@ -1044,6 +1044,44 @@ const BotManager = ()=>{
             setAuthToken(token);
         }
     }["BotManager.useEffect"], []);
+    // Define fetchBotStatus with useCallback to prevent infinite re-renders
+    const fetchBotStatus = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "BotManager.useCallback[fetchBotStatus]": async (botId)=>{
+            if (!authToken) return;
+            try {
+                const response = await fetch(`/api/bot?botId=${botId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                if (response.status === 401) {
+                    // Token expired or invalid
+                    localStorage.removeItem('auth_token');
+                    window.location.href = '/login';
+                    return;
+                }
+                const data = await response.json();
+                if (!response.ok || !data.success) {
+                    throw new Error(data.error || `Failed to fetch ${botId} status`);
+                }
+                if (botId === 'azbit') {
+                    setAzbitStatus({
+                        running: data.data.running
+                    });
+                } else {
+                    setP2pb2bStatus({
+                        running: data.data.running
+                    });
+                }
+                console.log(`${botId} status:`, data.data.running ? 'Running' : 'Stopped');
+            } catch (error) {
+                console.error(`Error fetching ${botId} status:`, error);
+            // Don't set error state here to avoid UI disruption during polling
+            }
+        }
+    }["BotManager.useCallback[fetchBotStatus]"], [
+        authToken
+    ]);
     // Fetch bot status on component mount
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "BotManager.useEffect": ()=>{
@@ -1063,39 +1101,9 @@ const BotManager = ()=>{
             }
         }
     }["BotManager.useEffect"], [
-        authToken
+        authToken,
+        fetchBotStatus
     ]);
-    const fetchBotStatus = async (botId)=>{
-        if (!authToken) return;
-        try {
-            const response = await fetch(`/api/bot?botId=${botId}`, {
-                headers: {
-                    'Authorization': `Bearer ${authToken}`
-                }
-            });
-            if (response.status === 401) {
-                // Token expired or invalid
-                localStorage.removeItem('auth_token');
-                window.location.href = '/login';
-                return;
-            }
-            if (!response.ok) {
-                throw new Error(`Failed to fetch ${botId} status: ${response.statusText}`);
-            }
-            const data = await response.json();
-            if (data.success) {
-                if (botId === 'azbit') {
-                    setAzbitStatus(data.data);
-                } else {
-                    setP2pb2bStatus(data.data);
-                }
-            } else {
-                console.error(`Error fetching ${botId} status:`, data.error);
-            }
-        } catch (error) {
-            console.error(`Error fetching ${botId} status:`, error);
-        }
-    };
     const handleStartBot = async (botId)=>{
         if (!authToken) return;
         try {
@@ -1220,6 +1228,32 @@ const BotManager = ()=>{
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "container mx-auto px-4 py-8 space-y-8",
         children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex justify-between items-center mb-6",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                        className: "text-2xl font-bold text-gray-900 dark:text-white",
+                        children: "Trading Bot Dashboard"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/BotManager.tsx",
+                        lineNumber: 212,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                        href: "/settings",
+                        className: "px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors",
+                        children: "API Settings"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/BotManager.tsx",
+                        lineNumber: 213,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/BotManager.tsx",
+                lineNumber: 211,
+                columnNumber: 7
+            }, this),
             error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative",
                 role: "alert",
@@ -1229,7 +1263,7 @@ const BotManager = ()=>{
                         children: "Error: "
                     }, void 0, false, {
                         fileName: "[project]/src/components/BotManager.tsx",
-                        lineNumber: 213,
+                        lineNumber: 220,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1237,7 +1271,7 @@ const BotManager = ()=>{
                         children: error
                     }, void 0, false, {
                         fileName: "[project]/src/components/BotManager.tsx",
-                        lineNumber: 214,
+                        lineNumber: 221,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1249,7 +1283,7 @@ const BotManager = ()=>{
                                 children: "Close"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/BotManager.tsx",
-                                lineNumber: 219,
+                                lineNumber: 226,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -1262,32 +1296,32 @@ const BotManager = ()=>{
                                         children: "Close"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/BotManager.tsx",
-                                        lineNumber: 221,
+                                        lineNumber: 228,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                         d: "M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/BotManager.tsx",
-                                        lineNumber: 222,
+                                        lineNumber: 229,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/BotManager.tsx",
-                                lineNumber: 220,
+                                lineNumber: 227,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/BotManager.tsx",
-                        lineNumber: 215,
+                        lineNumber: 222,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/BotManager.tsx",
-                lineNumber: 212,
+                lineNumber: 219,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1302,7 +1336,7 @@ const BotManager = ()=>{
                         onStop: ()=>handleStopBot('azbit')
                     }, void 0, false, {
                         fileName: "[project]/src/components/BotManager.tsx",
-                        lineNumber: 229,
+                        lineNumber: 236,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$BotControlPanel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1314,13 +1348,13 @@ const BotManager = ()=>{
                         onStop: ()=>handleStopBot('p2pb2b')
                     }, void 0, false, {
                         fileName: "[project]/src/components/BotManager.tsx",
-                        lineNumber: 237,
+                        lineNumber: 244,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/BotManager.tsx",
-                lineNumber: 228,
+                lineNumber: 235,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1336,28 +1370,27 @@ const BotManager = ()=>{
                                     children: "Azbit Bot Dashboard"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/BotManager.tsx",
-                                    lineNumber: 252,
+                                    lineNumber: 259,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/BotManager.tsx",
-                                lineNumber: 251,
+                                lineNumber: 258,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$BotDashboard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                botName: "Azbit Trading Bot",
                                 tradingPair: "BTC/USDT",
                                 isActive: azbitStatus.running,
                                 botId: "azbit"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/BotManager.tsx",
-                                lineNumber: 254,
+                                lineNumber: 261,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/BotManager.tsx",
-                        lineNumber: 250,
+                        lineNumber: 257,
                         columnNumber: 11
                     }, this),
                     p2pb2bStatus.running && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1370,34 +1403,33 @@ const BotManager = ()=>{
                                     children: "P2PB2B Bot Dashboard"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/BotManager.tsx",
-                                    lineNumber: 266,
+                                    lineNumber: 272,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/BotManager.tsx",
-                                lineNumber: 265,
+                                lineNumber: 271,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$BotDashboard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                botName: "P2PB2B Trading Bot",
                                 tradingPair: "BTCR/USDT",
                                 isActive: p2pb2bStatus.running,
                                 botId: "p2pb2b"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/BotManager.tsx",
-                                lineNumber: 268,
+                                lineNumber: 274,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/BotManager.tsx",
-                        lineNumber: 264,
+                        lineNumber: 270,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/BotManager.tsx",
-                lineNumber: 248,
+                lineNumber: 255,
                 columnNumber: 7
             }, this)
         ]
@@ -1407,7 +1439,7 @@ const BotManager = ()=>{
         columnNumber: 5
     }, this);
 };
-_s(BotManager, "MkQ/s0WxJVFjGLwzuomkL7yFHSM=");
+_s(BotManager, "h7hOzLqWxXuDVeyUuKlF2zKzQnY=");
 _c = BotManager;
 const __TURBOPACK__default__export__ = BotManager;
 var _c;

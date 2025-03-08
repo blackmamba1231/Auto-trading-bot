@@ -12,9 +12,20 @@ const VALID_PASSWORD = process.env.NEXT_PUBLIC_VALID_PASSWORD || 'tradingbot123'
 export async function POST(request: NextRequest) {
   try {
     console.log('Login API called');
+    console.log('Expected credentials from env:', { 
+      username: VALID_USERNAME,
+      password_length: VALID_PASSWORD ? VALID_PASSWORD.length : 0,
+      jwt_secret: JWT_SECRET
+    });
+    
     const body = await request.json();
     const { username, password } = body;
-    console.log('Login attempt:', { username });
+    console.log('Login attempt:', { 
+      username,
+      password_length: password ? password.length : 0,
+      matches_username: username === VALID_USERNAME,
+      matches_password: password === VALID_PASSWORD
+    });
 
     // Validate credentials
     if (username !== VALID_USERNAME || password !== VALID_PASSWORD) {
@@ -48,7 +59,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json(
-      { success: false},
+      { success: false, error: 'An error occurred during login' },
       { status: 500 }
     );
   }

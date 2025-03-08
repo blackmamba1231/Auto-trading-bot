@@ -123,12 +123,14 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken
 ;
 ;
 ;
-const JWT_SECRET = 'your-secret-key-for-trading-bot-authentication';
+// Use environment variable for JWT secret
+const JWT_SECRET = ("TURBOPACK compile-time value", "super121") || 'your-secret-key-for-trading-bot-authentication';
 // Helper function to verify JWT token
 const verifyToken = (token)=>{
     try {
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].verify(token, JWT_SECRET);
     } catch (error) {
+        console.log(error);
         return null;
     }
 };
@@ -147,7 +149,7 @@ const checkAuth = (request)=>{
     return false;
 };
 // Store bot process IDs
-let botProcesses = {
+const botProcesses = {
     azbit: {
         process: null,
         running: false
@@ -168,7 +170,8 @@ async function POST(request) {
                 status: 401
             });
         }
-        const { action, botId } = await request.json();
+        const requestBody = await request.json();
+        const { action, botId } = requestBody;
         if (!botId || ![
             'azbit',
             'p2pb2b'
@@ -217,7 +220,7 @@ async function POST(request) {
             }
             try {
                 // Start the bot process detached so it continues running after the API request completes
-                const process1 = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$child_process__$5b$external$5d$__$28$child_process$2c$__cjs$29$__["spawn"])('node', [
+                const childProcess = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$child_process__$5b$external$5d$__$28$child_process$2c$__cjs$29$__["spawn"])('node', [
                     scriptPath
                 ], {
                     cwd: rootDir,
@@ -226,10 +229,10 @@ async function POST(request) {
                     windowsHide: true
                 });
                 // Unref the process to allow the Node.js event loop to exit even if the process is still running
-                process1.unref();
+                childProcess.unref();
                 // Store the process reference
                 botProcesses[botId] = {
-                    process: process1,
+                    process: childProcess,
                     running: true
                 };
                 // Create a marker file to indicate the bot is running
@@ -237,13 +240,14 @@ async function POST(request) {
                 return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                     success: true,
                     message: `${botId} bot started successfully`,
-                    pid: process1.pid
+                    pid: childProcess.pid
                 });
             } catch (error) {
+                const errorMessage = error instanceof Error ? error.message : 'Unknown error';
                 console.error(`Error starting ${botId} bot:`, error);
                 return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                     success: false,
-                    error: `Failed to start ${botId} bot: ${error instanceof Error ? error.message : 'Unknown error'}`
+                    error: `Failed to start ${botId} bot: ${errorMessage}`
                 }, {
                     status: 500
                 });
@@ -262,7 +266,7 @@ async function POST(request) {
             }
             try {
                 // If we have a process reference, try to kill it
-                if (botProcesses[botId].process) {
+                if (botProcesses[botId].process && botProcesses[botId].process.pid) {
                     // On Windows, we need to use taskkill to kill the process tree
                     if ("TURBOPACK compile-time truthy", 1) {
                         (0, __TURBOPACK__imported__module__$5b$externals$5d2f$child_process__$5b$external$5d$__$28$child_process$2c$__cjs$29$__["spawn"])('taskkill', [
@@ -287,6 +291,7 @@ async function POST(request) {
                     message: `${botId} bot stopped successfully`
                 });
             } catch (error) {
+                const errorMessage = error instanceof Error ? error.message : 'Unknown error';
                 console.error(`Error stopping ${botId} bot:`, error);
                 // Even if there's an error, try to remove the marker file and update status
                 try {
@@ -299,7 +304,7 @@ async function POST(request) {
                 }
                 return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                     success: false,
-                    error: `Failed to stop ${botId} bot: ${error instanceof Error ? error.message : 'Unknown error'}`
+                    error: `Failed to stop ${botId} bot: ${errorMessage}`
                 }, {
                     status: 500
                 });
@@ -312,10 +317,11 @@ async function POST(request) {
             status: 400
         });
     } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
         console.error('Error handling bot action:', error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             success: false,
-            error: error.message || 'An error occurred'
+            error: errorMessage
         }, {
             status: 500
         });
@@ -358,10 +364,11 @@ async function GET(request) {
             }
         });
     } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
         console.error('Error getting bot status:', error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             success: false,
-            error: error.message || 'An error occurred'
+            error: errorMessage
         }, {
             status: 500
         });

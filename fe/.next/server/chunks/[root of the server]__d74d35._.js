@@ -93,18 +93,26 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken
 ;
 ;
 // In a real application, you would store this in an environment variable
-const JWT_SECRET = 'your-secret-key-for-trading-bot-authentication';
+const JWT_SECRET = ("TURBOPACK compile-time value", "super121") || 'default-secret-key';
 // Hardcoded credentials for a single user
 // In a real application, you would use a database and proper password hashing
-const VALID_USERNAME = process.env.NEXT_PUBLIC_VALID_USERNAME || 'admin';
-const VALID_PASSWORD = process.env.NEXT_PUBLIC_VALID_PASSWORD || 'tradingbot123';
+const VALID_USERNAME = ("TURBOPACK compile-time value", "admin") || 'admin';
+const VALID_PASSWORD = ("TURBOPACK compile-time value", "Aszxdfcv@121$%") || 'tradingbot123';
 async function POST(request) {
     try {
         console.log('Login API called');
+        console.log('Expected credentials from env:', {
+            username: VALID_USERNAME,
+            password_length: ("TURBOPACK compile-time truthy", 1) ? VALID_PASSWORD.length : ("TURBOPACK unreachable", undefined),
+            jwt_secret: JWT_SECRET
+        });
         const body = await request.json();
         const { username, password } = body;
         console.log('Login attempt:', {
-            username
+            username,
+            password_length: password ? password.length : 0,
+            matches_username: username === VALID_USERNAME,
+            matches_password: password === VALID_PASSWORD
         });
         // Validate credentials
         if (username !== VALID_USERNAME || password !== VALID_PASSWORD) {

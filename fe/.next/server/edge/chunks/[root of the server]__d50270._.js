@@ -31,18 +31,22 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 // Routes that are API endpoints and need token verification
 const protectedApiRoutes = [
     '/api/bot',
-    '/api/bot-data'
+    '/api/bot-data',
+    '/api/settings'
 ];
 async function middleware(request) {
     const { pathname } = request.nextUrl;
+    console.log('Middleware processing path:', pathname);
     // Skip middleware for Next.js assets, public files, etc.
     if (pathname.startsWith('/_next') || pathname.includes('favicon.ico') || pathname.includes('robots.txt')) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next();
     }
     // Only check API routes that need token verification
     if (protectedApiRoutes.some((route)=>pathname.startsWith(route))) {
+        console.log('Protected route detected:', pathname);
         const authHeader = request.headers.get('Authorization');
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            console.log('Missing or invalid Authorization header');
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 error: 'Unauthorized'
             }, {
@@ -53,12 +57,14 @@ async function middleware(request) {
         // In a real app, you would verify the token
         const token = authHeader.split(' ')[1];
         if (!token) {
+            console.log('Empty token in Authorization header');
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 error: 'Invalid token'
             }, {
                 status: 401
             });
         }
+        console.log('Valid token found, proceeding with request');
     }
     // For all other routes, let the client handle authentication
     return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next();
@@ -67,7 +73,8 @@ const config = {
     matcher: [
         // Only match API routes that need protection
         '/api/bot/:path*',
-        '/api/bot-data/:path*'
+        '/api/bot-data/:path*',
+        '/api/settings/:path*'
     ]
 };
 }}),

@@ -116,12 +116,13 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken
 ;
 const readFilePromise = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$util__$5b$external$5d$__$28$util$2c$__cjs$29$__["promisify"])(__TURBOPACK__imported__module__$5b$externals$5d2f$fs__$5b$external$5d$__$28$fs$2c$__cjs$29$__["default"].readFile);
 const existsPromise = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$util__$5b$external$5d$__$28$util$2c$__cjs$29$__["promisify"])(__TURBOPACK__imported__module__$5b$externals$5d2f$fs__$5b$external$5d$__$28$fs$2c$__cjs$29$__["default"].exists);
-const JWT_SECRET = 'your-secret-key-for-trading-bot-authentication';
+const JWT_SECRET = ("TURBOPACK compile-time value", "super121") || 'your-secret-key-for-trading-bot-authentication';
 // Helper function to verify JWT token
 const verifyToken = (token)=>{
     try {
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].verify(token, JWT_SECRET);
     } catch (error) {
+        console.log(error);
         return null;
     }
 };
@@ -219,7 +220,6 @@ async function getTransactionHistory(botId) {
         // If no transactions exist yet, return empty array
         if (!transactionStore[botId] || transactionStore[botId].length === 0) {
             // Generate some initial mock transactions
-            const cryptoCurrency = botId === 'azbit' ? 'BTCR' : 'BRIL';
             transactionStore[botId] = Array.from({
                 length: 5
             }, (_, i)=>{
@@ -316,7 +316,7 @@ async function GET(request) {
         console.error('Error getting bot data:', error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             success: false,
-            error: error.message || 'An error occurred'
+            error: 'An error occurred'
         }, {
             status: 500
         });
