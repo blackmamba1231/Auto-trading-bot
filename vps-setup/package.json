@@ -1,11 +1,12 @@
 {
-  "name": "auto-trading-bot-server",
+  "name": "trading-bot-server",
   "version": "1.0.0",
-  "description": "Trading bot server for controlling bots remotely",
+  "description": "Server to manage trading bot processes",
   "main": "bot-server.js",
   "scripts": {
     "start": "node bot-server.js",
-    "dev": "nodemon bot-server.js"
+    "dev": "nodemon bot-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "cors": "^2.8.5",

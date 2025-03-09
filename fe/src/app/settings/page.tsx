@@ -52,7 +52,7 @@ export default function SettingsPage() {
   const fetchApiKeys = async () => {
     try {
       const token = localStorage.getItem('auth_token');
-      const response = await fetch('/api/settings', {
+      const response = await fetch('/api/settings-proxy', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -98,7 +98,7 @@ export default function SettingsPage() {
     
     try {
       const token = localStorage.getItem('auth_token');
-      const response = await fetch('/api/settings', {
+      const response = await fetch('/api/settings-proxy', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ export default function SettingsPage() {
     
     try {
       const token = localStorage.getItem('auth_token');
-      const response = await fetch('/api/settings/reset', {
+      const response = await fetch('/api/settings-proxy/reset', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
