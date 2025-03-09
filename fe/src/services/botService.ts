@@ -1,7 +1,7 @@
-// Bot service for communicating with the VPS bot server
+// Bot service for communicating with the VPS bot server via proxy
 
-// Use environment variable for the bot server URL with a fallback
-const BOT_SERVER_URL = process.env.NEXT_PUBLIC_BOT_SERVER_URL || 'http://173.249.28.166:3001';
+// Use the proxy API route instead of directly connecting to the VPS
+const API_BASE_URL = '/api/bot-proxy';
 
 // Function to get the auth token from localStorage
 const getAuthToken = (): string | null => {
@@ -31,7 +31,7 @@ interface ApiResponse {
 // Check server status (no auth required)
 export const checkServerStatus = async (): Promise<ApiResponse> => {
   try {
-    const response = await fetch(`${BOT_SERVER_URL}/api/status`);
+    const response = await fetch(`${API_BASE_URL}?endpoint=status`);
     return await response.json();
   } catch (error) {
     console.error('Error checking server status:', error);
@@ -50,7 +50,7 @@ export const getBotStatus = async (botId: string): Promise<BotStatus> => {
       throw new Error('No authentication token found');
     }
 
-    const response = await fetch(`${BOT_SERVER_URL}/api/bot?botId=${botId}`, {
+    const response = await fetch(`${API_BASE_URL}?endpoint=bot&botId=${botId}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -81,7 +81,7 @@ export const startBot = async (botId: string): Promise<ApiResponse> => {
       throw new Error('No authentication token found');
     }
 
-    const response = await fetch(`${BOT_SERVER_URL}/api/bot`, {
+    const response = await fetch(`${API_BASE_URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ export const stopBot = async (botId: string): Promise<ApiResponse> => {
       throw new Error('No authentication token found');
     }
 
-    const response = await fetch(`${BOT_SERVER_URL}/api/bot`, {
+    const response = await fetch(`${API_BASE_URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
