@@ -1,0 +1,19 @@
+{
+  "name": "auto-trading-bot-server",
+  "version": "1.0.0",
+  "description": "Trading bot server for controlling bots remotely",
+  "main": "bot-server.js",
+  "scripts": {
+    "start": "node bot-server.js",
+    "dev": "nodemon bot-server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

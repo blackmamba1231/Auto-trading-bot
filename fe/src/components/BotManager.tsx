@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import BotControlPanel from './BotControlPanel';
 import BotDashboard from './BotDashboard';
+import Link from 'next/link';
+import { getBotStatus, startBot, stopBot, checkServerStatus } from '../services/botService';
 
 interface BotStatus {
   running: boolean;
@@ -23,6 +25,9 @@ const BotManager: React.FC = () => {
   // Error display
   const [error, setError] = useState<string | null>(null);
   
+  // Server status
+  const [serverConnected, setServerConnected] = useState<boolean>(false);
+  
   // Authentication token
   const [authToken, setAuthToken] = useState<string | null>(null);
 
@@ -37,168 +42,150 @@ const BotManager: React.FC = () => {
     setAuthToken(token);
   }, []);
 
-  // Define fetchBotStatus with useCallback to prevent infinite re-renders
-  const fetchBotStatus = useCallback(async (botId: string) => {
-    if (!authToken) return;
-    
-    try {
-      const response = await fetch(`/api/bot?botId=${botId}`, {
-        headers: {
-          'Authorization': `Bearer ${authToken}`
+  // Check server connection
+  useEffect(() => {
+    const checkConnection = async () => {
+      try {
+        const status = await checkServerStatus();
+        setServerConnected(status.success);
+        
+        if (status.success && status.status) {
+          // Update bot statuses from server
+          setAzbitStatus({ running: status.status.azbit });
+          setP2pb2bStatus({ running: status.status.p2pb2b });
         }
-      });
-      
-      if (response.status === 401) {
-        // Token expired or invalid
-        localStorage.removeItem('auth_token');
-        window.location.href = '/login';
-        return;
+      } catch (error) {
+        console.error('Error checking server connection:', error);
+        setServerConnected(false);
       }
-      
-      const data = await response.json();
-      
-      if (!response.ok || !data.success) {
-        throw new Error(data.error || `Failed to fetch ${botId} status`);
-      }
-      
-      if (botId === 'azbit') {
-        setAzbitStatus({ running: data.data.running });
-      } else {
-        setP2pb2bStatus({ running: data.data.running });
-      }
-      
-      console.log(`${botId} status:`, data.data.running ? 'Running' : 'Stopped');
-    } catch (error) {
-      console.error(`Error fetching ${botId} status:`, error);
-      // Don't set error state here to avoid UI disruption during polling
+    };
+    
+    if (authToken) {
+      checkConnection();
+      // Check connection every 30 seconds
+      const interval = setInterval(checkConnection, 30000);
+      return () => clearInterval(interval);
     }
   }, [authToken]);
 
-  // Fetch bot status on component mount
-  useEffect(() => {
-    if (authToken) {
-      fetchBotStatus('azbit');
-      fetchBotStatus('p2pb2b');
-
-      // Poll for status updates every 10 seconds
-      const interval = setInterval(() => {
-        fetchBotStatus('azbit');
-        fetchBotStatus('p2pb2b');
-      }, 10000);
-
-      return () => clearInterval(interval);
-    }
-  }, [authToken, fetchBotStatus]);
-
-  const handleStartBot = async (botId: string) => {
-    if (!authToken) return;
+  // Define fetchBotStatus with useCallback to prevent infinite re-renders
+  const fetchBotStatus = useCallback(async (botId: string) => {
+    if (!authToken || !serverConnected) return;
     
     try {
-      // Set loading state
+      const status = await getBotStatus(botId);
+      
       if (botId === 'azbit') {
-        setAzbitAction({ isLoading: true, error: null });
-      } else {
-        setP2pb2bAction({ isLoading: true, error: null });
+        setAzbitStatus(status);
+      } else if (botId === 'p2pb2b') {
+        setP2pb2bStatus(status);
       }
+    } catch (error) {
+      console.error(`Error fetching ${botId} status:`, error);
+      setError(`Failed to get ${botId} bot status: ${(error as Error).message}`);
+    }
+  }, [authToken, serverConnected]);
+
+  // Fetch bot statuses periodically
+  useEffect(() => {
+    if (!authToken || !serverConnected) return;
+    
+    // Initial fetch
+    fetchBotStatus('azbit');
+    fetchBotStatus('p2pb2b');
+    
+    // Set up interval for periodic fetching
+    const interval = setInterval(() => {
+      fetchBotStatus('azbit');
+      fetchBotStatus('p2pb2b');
+    }, 5000); // Check every 5 seconds
+    
+    return () => clearInterval(interval);
+  }, [authToken, fetchBotStatus, serverConnected]);
+
+  // Handle starting a bot
+  const handleStartBot = async (botId: string) => {
+    if (!authToken || !serverConnected) {
+      setError('Cannot connect to bot server');
+      return;
+    }
+    
+    // Set loading state
+    if (botId === 'azbit') {
+      setAzbitAction({ isLoading: true, error: null });
+    } else {
+      setP2pb2bAction({ isLoading: true, error: null });
+    }
+    
+    try {
+      const response = await startBot(botId);
       
-      // Clear any previous errors
-      setError(null);
-      
-      const response = await fetch('/api/bot', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authToken}`
-        },
-        body: JSON.stringify({
-          action: 'start',
-          botId,
-        }),
-      });
-      
-      if (response.status === 401) {
-        // Token expired or invalid
-        localStorage.removeItem('auth_token');
-        window.location.href = '/login';
-        return;
-      }
-      
-      const data = await response.json();
-      
-      if (!response.ok || !data.success) {
-        throw new Error(data.error || `Failed to start ${botId} bot`);
+      if (!response.success) {
+        throw new Error(response.error || `Failed to start ${botId} bot`);
       }
       
       // Update bot status
-      await fetchBotStatus(botId);
-      
-      console.log(`${botId} bot started successfully`);
-    } catch (error) {
-      console.error(`Error starting ${botId} bot:`, error);
-      setError(error instanceof Error ? error.message : 'An unknown error occurred');
-    } finally {
-      // Clear loading state
       if (botId === 'azbit') {
+        setAzbitStatus({ running: true });
         setAzbitAction({ isLoading: false, error: null });
       } else {
+        setP2pb2bStatus({ running: true });
         setP2pb2bAction({ isLoading: false, error: null });
       }
+    } catch (error) {
+      console.error(`Error starting ${botId} bot:`, error);
+      
+      // Update error state
+      if (botId === 'azbit') {
+        setAzbitAction({ isLoading: false, error: (error as Error).message });
+      } else {
+        setP2pb2bAction({ isLoading: false, error: (error as Error).message });
+      }
+      
+      setError(`Failed to start ${botId} bot: ${(error as Error).message}`);
     }
   };
 
+  // Handle stopping a bot
   const handleStopBot = async (botId: string) => {
-    if (!authToken) return;
+    if (!authToken || !serverConnected) {
+      setError('Cannot connect to bot server');
+      return;
+    }
+    
+    // Set loading state
+    if (botId === 'azbit') {
+      setAzbitAction({ isLoading: true, error: null });
+    } else {
+      setP2pb2bAction({ isLoading: true, error: null });
+    }
     
     try {
-      // Set loading state
-      if (botId === 'azbit') {
-        setAzbitAction({ isLoading: true, error: null });
-      } else {
-        setP2pb2bAction({ isLoading: true, error: null });
-      }
+      const response = await stopBot(botId);
       
-      // Clear any previous errors
-      setError(null);
-      
-      const response = await fetch('/api/bot', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authToken}`
-        },
-        body: JSON.stringify({
-          action: 'stop',
-          botId,
-        }),
-      });
-      
-      if (response.status === 401) {
-        // Token expired or invalid
-        localStorage.removeItem('auth_token');
-        window.location.href = '/login';
-        return;
-      }
-      
-      const data = await response.json();
-      
-      if (!response.ok || !data.success) {
-        throw new Error(data.error || `Failed to stop ${botId} bot`);
+      if (!response.success) {
+        throw new Error(response.error || `Failed to stop ${botId} bot`);
       }
       
       // Update bot status
-      await fetchBotStatus(botId);
-      
-      console.log(`${botId} bot stopped successfully`);
-    } catch (error) {
-      console.error(`Error stopping ${botId} bot:`, error);
-      setError(error instanceof Error ? error.message : 'An unknown error occurred');
-    } finally {
-      // Clear loading state
       if (botId === 'azbit') {
+        setAzbitStatus({ running: false });
         setAzbitAction({ isLoading: false, error: null });
       } else {
+        setP2pb2bStatus({ running: false });
         setP2pb2bAction({ isLoading: false, error: null });
       }
+    } catch (error) {
+      console.error(`Error stopping ${botId} bot:`, error);
+      
+      // Update error state
+      if (botId === 'azbit') {
+        setAzbitAction({ isLoading: false, error: (error as Error).message });
+      } else {
+        setP2pb2bAction({ isLoading: false, error: (error as Error).message });
+      }
+      
+      setError(`Failed to stop ${botId} bot: ${(error as Error).message}`);
     }
   };
 
@@ -210,9 +197,15 @@ const BotManager: React.FC = () => {
     <div className="container mx-auto px-4 py-8 space-y-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Trading Bot Dashboard</h1>
-        <a href="/settings" className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors">
-          API Settings
-        </a>
+        <div className="flex space-x-4">
+          <div className={`flex items-center ${serverConnected ? 'text-green-500' : 'text-red-500'}`}>
+            <span className={`inline-block w-3 h-3 rounded-full mr-2 ${serverConnected ? 'bg-green-500' : 'bg-red-500'}`}></span>
+            <span>{serverConnected ? 'Server Connected' : 'Server Disconnected'}</span>
+          </div>
+          <Link href="/settings" className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors">
+            API Settings
+          </Link>
+        </div>
       </div>
       
       {error && (
@@ -232,6 +225,15 @@ const BotManager: React.FC = () => {
         </div>
       )}
       
+      {!serverConnected && (
+        <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative mb-6" role="alert">
+          <strong className="font-bold">Warning: </strong>
+          <span className="block sm:inline">
+            Cannot connect to the bot server. Please make sure the server is running at {process.env.NEXT_PUBLIC_BOT_SERVER_URL || 'http://173.249.28.166:3001'}.
+          </span>
+        </div>
+      )}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <BotControlPanel
           botName="Azbit Trading Bot"
@@ -240,6 +242,7 @@ const BotManager: React.FC = () => {
           isLoading={azbitAction.isLoading}
           onStart={() => handleStartBot('azbit')}
           onStop={() => handleStopBot('azbit')}
+          disabled={!serverConnected}
         />
         <BotControlPanel
           botName="P2PB2B Trading Bot"
@@ -248,6 +251,7 @@ const BotManager: React.FC = () => {
           isLoading={p2pb2bAction.isLoading}
           onStart={() => handleStartBot('p2pb2b')}
           onStop={() => handleStopBot('p2pb2b')}
+          disabled={!serverConnected}
         />
       </div>
 

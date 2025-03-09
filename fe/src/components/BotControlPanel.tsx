@@ -8,6 +8,7 @@ export interface BotControlPanelProps {
   isLoading?: boolean;
   onStart: () => void;
   onStop: () => void;
+  disabled?: boolean;
 }
 
 const BotControlPanel: React.FC<BotControlPanelProps> = ({
@@ -15,7 +16,8 @@ const BotControlPanel: React.FC<BotControlPanelProps> = ({
   isRunning,
   isLoading = false,
   onStart,
-  onStop
+  onStop,
+  disabled = false
 }) => {
   return (
     <motion.div
@@ -37,9 +39,9 @@ const BotControlPanel: React.FC<BotControlPanelProps> = ({
       <div className="flex space-x-4">
         <button
           onClick={onStart}
-          disabled={isRunning || isLoading}
+          disabled={isRunning || isLoading || disabled}
           className={`flex-1 py-2 px-4 rounded-md text-white font-medium transition-colors ${
-            isRunning || isLoading
+            isRunning || isLoading || disabled
               ? 'bg-gray-400 cursor-not-allowed'
               : 'bg-green-500 hover:bg-green-600'
           }`}
@@ -59,9 +61,9 @@ const BotControlPanel: React.FC<BotControlPanelProps> = ({
         
         <button
           onClick={onStop}
-          disabled={!isRunning || isLoading}
+          disabled={!isRunning || isLoading || disabled}
           className={`flex-1 py-2 px-4 rounded-md text-white font-medium transition-colors ${
-            !isRunning || isLoading
+            !isRunning || isLoading || disabled
               ? 'bg-gray-400 cursor-not-allowed'
               : 'bg-red-500 hover:bg-red-600'
           }`}
@@ -79,6 +81,12 @@ const BotControlPanel: React.FC<BotControlPanelProps> = ({
           )}
         </button>
       </div>
+      
+      {disabled && (
+        <div className="text-yellow-600 dark:text-yellow-400 text-sm mt-2">
+          Bot controls are disabled because the server is not connected.
+        </div>
+      )}
     </motion.div>
   );
 };
