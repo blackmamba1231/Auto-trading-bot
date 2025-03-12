@@ -86,8 +86,9 @@ export async function POST(request: NextRequest) {
       }
 
       // Determine which script to run based on botId
-      const scriptPath = botId === 'azbit' ? 'index.js' : 'index2.js';
+    const scriptPath = botId === 'azbit' ? 'index.js' : 'p2pb2b-random-quantity-improved.js';
       const fullScriptPath = path.join(rootDir, scriptPath);
+
 
       // Check if the script exists
       if (!fs.existsSync(fullScriptPath)) {
